@@ -73,8 +73,19 @@ export async function addNewProduct(product, imageUrl) {
   return set(ref(database, `products/${id}`), {
     ...product,
     id,
-    price: parseInt(product.price),
     image: imageUrl,
-    options: product.options.split(","),
+    category: product.category.split("/"),
+    price: parseInt(product.price),
+    size: product.size.split(","),
+    colors: product.colors.split(","),
+  });
+}
+
+export async function getProducts() {
+  return get(ref(database, "products")).then(snapshot => {
+    if (snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return [];
   });
 }

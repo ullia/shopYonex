@@ -83,9 +83,17 @@ export default function NewProduct() {
         />
         <input
           type="text"
-          name="options"
-          value={product.options ?? ""}
-          placeholder="옵션들(','로 구분)"
+          name="size"
+          value={product.size ?? ""}
+          placeholder="사이즈 옵션들(','로 구분)"
+          required
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="colors"
+          value={product.colors ?? ""}
+          placeholder="컬러 옵션들(','로 구분)"
           required
           onChange={handleChange}
         />

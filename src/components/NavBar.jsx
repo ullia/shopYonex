@@ -30,7 +30,7 @@ export default function NavBar() {
       <header className="flex justify-between border-b border-gray-300 p-4">
         <Link to="/" className="flex items-center text-4xl text-brand">
           <img src="/logo.jpg" alt="" />
-          <h1>YONEX</h1>
+          <h1 className="hidden">YONEX</h1>
         </Link>
         <nav className="flex items-center gap-4 font-semibold">
           <Link to="/products">products</Link>

@@ -1,19 +1,45 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Button from "../components/ui/Button";
+import { useAuthContext } from "../context/AuthContext";
+import { addOrUpdateToCart } from "../api/firebase";
 
 export default function ProductDetail() {
+  const { uid } = useAuthContext();
   const {
     state: {
-      product: { id, image, title, description, category, price, colors },
+      product: { id, image, title, description, category, price, size, colors },
     },
   } = useLocation();
-  const [selected, setSelected] = useState(colors && colors[0]);
+  const [sizeSelected, setSizeSelected] = useState(size && size[0]);
+  const [colorSelected, setColorSelected] = useState(colors && colors[0]);
   const handleSelect = e => {
-    setSelected(e.target.value);
+    // console.log(e.target.id);
+    let selectType = e.target.id;
+    switch (selectType) {
+      case "select-color":
+        setColorSelected(e.target.value);
+        break;
+      case "select-size":
+        setSizeSelected(e.target.value);
+        break;
+      default:
+        break;
+    }
   };
   const handleClick = e => {
     // 장바구니 추가하기
+    const product = {
+      id,
+      image,
+      title,
+      price,
+      size: sizeSelected,
+      colors: colorSelected,
+      quantity: 1,
+    };
+    // console.log(product);
+    addOrUpdateToCart(uid, product);
   };
 
   return (
@@ -26,15 +52,36 @@ export default function ProductDetail() {
           <p className="text-2xl font-bold py-2 border-b border-gray-400">{price} 원</p>
           <p className="text-lg py-4">{description}</p>
           <div className="flex items-center">
-            <label className="text-brand font-bold" htmlFor="select">
+            <label className="text-brand font-bold" htmlFor="select-size">
+              사이즈:
+            </label>
+            <select
+              className="p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none"
+              onChange={handleSelect}
+              value={sizeSelected}
+              name=""
+              id="select-size"
+            >
+              {size &&
+                size.map((size, index) => {
+                  return (
+                    <option value={size} key={index}>
+                      {size}
+                    </option>
+                  );
+                })}
+            </select>
+          </div>
+          <div className="flex items-center">
+            <label className="text-brand font-bold" htmlFor="select-color">
               색상:
             </label>
             <select
               className="p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none"
               onChange={handleSelect}
-              value={selected}
+              value={colorSelected}
               name=""
-              id="select"
+              id="select-color"
             >
               {colors &&
                 colors.map((color, index) => {

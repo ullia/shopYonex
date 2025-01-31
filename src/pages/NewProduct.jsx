@@ -2,12 +2,23 @@ import React, { useState } from "react";
 import Button from "../components/ui/Button";
 import { uploadImage } from "../api/uploader";
 import { addNewProduct } from "../api/firebase";
+import { QueryClient, useMutation } from "@tanstack/react-query";
 
 export default function NewProduct() {
   const [product, setProduct] = useState({});
   const [file, setFile] = useState();
   const [isUploading, setIsUploading] = useState(false);
   const [sucess, setSucess] = useState();
+  const addProduct = useMutation({
+    mutationFn: ({ product, url }) => addNewProduct(product, url),
+
+    onSuccess: async () =>
+      await QueryClient.invalidateQueries({
+        queryKey: ["products"],
+
+        refetchType: "all",
+      }),
+  });
 
   const handleChange = e => {
     const { name, value, files } = e.target;
@@ -28,12 +39,17 @@ export default function NewProduct() {
     uploadImage(file) //
       .then(url => {
         // console.log(url);
-        addNewProduct(product, url).then(() => {
-          setSucess("등록완료!");
-          setTimeout(() => {
-            setSucess(null);
-          }, 4000);
-        });
+        addProduct.mutate(
+          { product, url },
+          {
+            onSuccess: () => {
+              setSucess("등록완료!");
+              setTimeout(() => {
+                setSucess(null);
+              }, 4000);
+            },
+          },
+        );
       })
       .finally(() => {
         setIsUploading(false);

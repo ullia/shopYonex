@@ -38,9 +38,9 @@ export default function MyCart() {
           <div className="flex justify-between items-center mb-6 px-2 md:px-8">
             <PriceCard text="상품 총액" price={totalPrice} />
             <BsFillPlusCircleFill className="shrink-0" />
-            <PriceCard text="배송송액" price={SHIPPING} />
+            <PriceCard text="배송액" price={SHIPPING} />
             <FaEquals className="shrink-0" />
-            <PriceCard text="총가격격" price={totalPrice + SHIPPING} />
+            <PriceCard text="총가격" price={totalPrice + SHIPPING} />
           </div>
           <Button text="주문하기" />
         </>

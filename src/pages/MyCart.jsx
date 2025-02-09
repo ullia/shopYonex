@@ -1,7 +1,5 @@
 import React from "react";
 import CartItem from "../components/CartItem";
-import { BsFillPlusCircleFill } from "react-icons/bs";
-import { FaEquals } from "react-icons/fa";
 import PriceCard from "../components/PriceCard";
 import Button from "../components/ui/Button";
 import useCart from "../hooks/useCart";
@@ -25,21 +23,23 @@ export default function MyCart() {
       <p className="text-2xl text-left font-bold pb-4 border-b border-gray-500">Cart</p>
       {!hasProducts && <p>장바구니에 상품이 없습니다.</p>}
       {hasProducts && (
-        <>
-          <ul className="border-b border-gray-300 mb-8 p-4 px-8">
+        <div className="flex flex-col md:flex-row justify-between">
+          <ul className="border-b border-gray-300 mb-8 py-4 pr-8 w-full md:w-10/12">
             {products.map(product => (
               <CartItem key={product.id} product={product} />
             ))}
           </ul>
-          <div className="flex justify-between items-center mb-6 px-2 md:px-8">
+          <div className="dkmd flex flex-col justify-center items-center mb-6 md:px-8 bg-gray-100 py-6 px-6 w-full md:w-2/12 md:min-w-72 h-fit">
+            <h3 className="font-bold text-xl mb-4">Order Summary</h3>
             <PriceCard text="상품 총액" price={totalPrice} />
-            <BsFillPlusCircleFill className="shrink-0" />
+
             <PriceCard text="배송액" price={SHIPPING} />
-            <FaEquals className="shrink-0" />
+
             <PriceCard text="총가격" price={totalPrice + SHIPPING} />
+            <div className="w-full h-auto my-6 border-b border-gray-300" />
+            <Button width="w-full" text="주문하기" />
           </div>
-          <Button text="주문하기" />
-        </>
+        </div>
       )}
     </section>
   );

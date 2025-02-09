@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-basic: #fff;
+  --bg-darkmode: #2a2b31;
+  --text-basic: #000;
+  --text-darkmode: #fff;
+}
+
+html.dark {
+  background: var(--bg-darkmode);
+  color: var(--text-darkmode);
+}
+
+html.dark input,
+html.dark select {
+  background: var(--bg-darkmode);
+}
+html.dark .dkmd {
+  background: var(--bg-darkmode);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",

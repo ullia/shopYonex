@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { BsFillPencilFill } from "react-icons/bs";
-import { login, logout, onUserStateChange } from "../api/firebase";
+import { MdSunny } from "react-icons/md";
+import { FaMoon } from "react-icons/fa";
 import User from "./User";
 import Button from "./ui/Button";
-import { useAuthContext } from "../context/AuthContext";
 import CartStatus from "./CartStatus";
+import { useAuthContext } from "../context/AuthContext";
+import { useDarkModeContext } from "../context/DarkModeContext";
 
 export default function NavBar() {
   const { user, login, logout } = useAuthContext();
+  const { darkMode, toggleDarkMode } = useDarkModeContext();
 
   // const [user, setUser] = useState();
 
@@ -35,6 +38,7 @@ export default function NavBar() {
         </Link>
         <nav className="flex items-center gap-4 font-semibold">
           <Link to="/products">products</Link>
+          <button onClick={toggleDarkMode}>{darkMode ? <FaMoon /> : <MdSunny />}</button>
           {user && (
             <Link to="/carts">
               <CartStatus />

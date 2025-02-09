@@ -2,9 +2,9 @@ import React from "react";
 
 export default function PriceCard({ text, price }) {
   return (
-    <div className="bg-gray-50 p-8 mx-2 rounded-2xl text-center text-lg md:text-xl">
+    <div className="flex justify-between items-end w-full text-sm md:text-md">
       <p>{text}</p>
-      <p className="font-bold text-xl text-brand md:text-2xl">{price} 원</p>
+      <p className="font-bold text-lg text-brand">{price} 원</p>
     </div>
   );
 }

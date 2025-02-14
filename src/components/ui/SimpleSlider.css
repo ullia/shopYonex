@@ -1,0 +1,82 @@
+.main__slider {
+  position: relative;
+}
+.slider__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.slide-t,
+.slide-b {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  background: url("../../../public/assets/images/line_w_FW.jpg");
+  z-index: 1;
+}
+.slide-l,
+.slide-r {
+  position: absolute;
+  height: 100%;
+  width: 30px;
+  background: url("../../../public/assets/images/line_h_FW.jpg");
+  z-index: 1;
+}
+.slide-t {
+  top: 0;
+  left: 0;
+}
+.slide-b {
+  top: auto;
+  bottom: 0;
+  left: 0;
+}
+.slide-l {
+  top: 0;
+  left: 0;
+}
+.slide-r {
+  top: 0;
+  left: auto;
+  right: 0;
+}
+
+.slick-dots {
+}
+.slick-dots li {
+  width: 24px;
+  height: 2px;
+}
+
+.slick-dots li button {
+  width: 24px;
+  height: 2px;
+  padding: 0;
+  outline: none;
+  background: transparent;
+}
+
+.slick-dots li button:before {
+  font-family: "slick";
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  content: "";
+  text-align: center;
+  opacity: 0.25;
+  background: var(--bg-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark .slick-dots li button:before {
+  background: var(--bg-basic);
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "./ProductCard";
 import useProducts from "../hooks/useProducts";
 
@@ -6,6 +6,9 @@ export default function Products() {
   const {
     productsQuery: { isLoading, error, data: products },
   } = useProducts();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       {isLoading && <p>로딩중...</p>}

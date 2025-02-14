@@ -30,15 +30,15 @@ export default function NavBar() {
   // };
 
   return (
-    <div>
-      <header className="flex justify-between border-b border-gray-300 p-4">
+    <>
+      <header className="flex top-0 z-10 sticky justify-between border-b border-gray-300 p-4">
         <Link to="/" className="flex items-center text-4xl text-brand">
-          <img src="/logo.jpg" alt="" />
+          <img className="w-[70%] shrink-0 md:w-full" src="/logo.jpg" alt="" />
           <h1 className="hidden">YONEX</h1>
         </Link>
         <nav className="flex items-center gap-4 font-semibold">
           <Link to="/products">products</Link>
-          <button onClick={toggleDarkMode}>{darkMode ? <FaMoon /> : <MdSunny />}</button>
+
           {user && (
             <Link to="/carts">
               <CartStatus />
@@ -51,15 +51,16 @@ export default function NavBar() {
           )}
 
           {!user ? (
-            <Button text={"Login"} onClick={login} />
+            <Button text={"Login"} onClick={login} noneStyle={true} />
           ) : (
             <>
               <User user={user} />
-              <Button text={"Logout"} onClick={logout} />
+              <Button text={"Logout"} onClick={logout} noneStyle={true} />
             </>
           )}
+          <button onClick={toggleDarkMode}>{darkMode ? <FaMoon /> : <MdSunny />}</button>
         </nav>
       </header>
-    </div>
+    </>
   );
 }

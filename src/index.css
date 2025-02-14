@@ -4,7 +4,8 @@
 
 :root {
   --bg-basic: #fff;
-  --bg-darkmode: #2a2b31;
+  --bg-darkmode: #2b2b2b;
+  --bg-black: #000;
   --text-basic: #000;
   --text-darkmode: #fff;
 }
@@ -21,6 +22,13 @@ html.dark select {
 html.dark .dkmd {
   background: var(--bg-darkmode);
 }
+html.dark .text-brand {
+  color: rgb(90 200 100 / var(--tw-text-opacity, 1));
+}
+html.dark header,
+html.dark footer {
+  background: #2b2b2b;
+}
 
 body {
   margin: 0;
@@ -36,7 +44,8 @@ code {
 }
 
 #root {
-  @apply w-full max-w-screen-2xl;
+  @apply w-full;
+  /* @apply w-full max-w-screen-2xl; */
 }
 
 input {

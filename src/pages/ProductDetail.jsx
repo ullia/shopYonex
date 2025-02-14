@@ -13,6 +13,8 @@ export default function ProductDetail() {
   const [success, setSuccess] = useState();
   const [sizeSelected, setSizeSelected] = useState(size && size[0]);
   const [colorSelected, setColorSelected] = useState(colors && colors[0]);
+  console.log(category[0]);
+
   const handleSelect = e => {
     // console.log(e.target.id);
     let selectType = e.target.id;
@@ -51,7 +53,9 @@ export default function ProductDetail() {
 
   return (
     <section>
-      <p className="mx-12 mt-4 text-gray-700">{category}</p>
+      <p className="mx-12 mt-4">
+        {category.length > 1 ? category[0] + " / " + category[1] : category}
+      </p>
       <section className="flex flex-col md:flex-row p-4">
         <img className="w-full px-4 basis-7/12" src={image} alt={title} />
         <div className="w-full basis-5/12 flex flex-col p-4">

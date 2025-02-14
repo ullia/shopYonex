@@ -1,13 +1,13 @@
 import React from "react";
-import Banner from "../components/Banner";
 import Products from "../components/Products";
 import SimpleSlider from "../components/ui/SimpleSlider";
+import BannerSectionType1 from "../components/BannerSectionType1";
 
 export default function Home() {
   return (
-    <section>
+    <section className="overflow-hidden">
       <SimpleSlider />
-      <Banner />
+      <BannerSectionType1 />
       <Products />
     </section>
   );

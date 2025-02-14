@@ -22,9 +22,9 @@ const router = createBrowserRouter([
       { index: true, path: "/", element: <Home /> },
       { path: "/products", element: <AllProducts /> },
       {
-        path: "/products/new",
+        path: "/products/new", // requireAdmin 제거 (관리지가 아니라도 등록할수 있도록)
         element: (
-          <ProtectedRoute requireAdmin>
+          <ProtectedRoute>
             <NewProduct />
           </ProtectedRoute>
         ),

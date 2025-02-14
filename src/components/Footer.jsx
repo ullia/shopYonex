@@ -24,9 +24,9 @@ export default function Footer() {
                 <span class="ver_line"></span> 서울특별시 마포구 포은로 120 덕일빌딩
                 <span class="ver_line"></span> 대표이사 : 김철웅
                 <span class="ver_line"></span> 사업자등록번호 :{" "}
-                <a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1058104692" target="_blank">
+                <Link to="/" target="_blank">
                   105-81-04692
-                </a>
+                </Link>
                 <span class="ver_line"></span> 통신판매신고 : 제 2010-서울마포-0794호
               </li>
               <li>

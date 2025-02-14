@@ -19,12 +19,16 @@ export default function MyCart() {
     products.reduce((prev, current) => prev + parseInt(current.price) * current.quantity, 0);
 
   return (
-    <section className="p-8">
+    <section className="p-4 md:p-8 md:pb-36" style={{ minHeight: "70vh" }}>
       <p className="text-2xl text-left font-bold pb-4 border-b border-gray-500">Cart</p>
-      {!hasProducts && <p>장바구니에 상품이 없습니다.</p>}
+      {!hasProducts && (
+        <div className="flex justify-center py-24">
+          <p>장바구니에 상품이 없습니다.</p>
+        </div>
+      )}
       {hasProducts && (
         <div className="flex flex-col md:flex-row justify-between">
-          <ul className="border-b border-gray-300 mb-8 py-4 pr-8 w-full md:w-10/12">
+          <ul className="border-b border-gray-300 mb-8 p-0 md:pr-8 w-full md:w-10/12">
             {products.map(product => (
               <CartItem key={product.id} product={product} />
             ))}

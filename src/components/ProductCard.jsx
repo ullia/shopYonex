@@ -13,8 +13,15 @@ export default function ProductCard({
       }}
       className="rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105"
     >
-      <div className="image-area" style={{ backgroundColor: "#eee" }}>
-        <img className="w-full" src={image} alt={title} />
+      <div
+        className="image-area relative w-full pt-[100%] overflow-hidden"
+        style={{ backgroundColor: "#eee" }}
+      >
+        <img
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover"
+          src={image}
+          alt={title}
+        />
       </div>
       <div className="flex flex-col mt-2 px-2 text-lg flex justify-between items-center">
         <h3 className="truncate font-bold">{title}</h3>

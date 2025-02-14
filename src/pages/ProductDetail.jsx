@@ -13,7 +13,6 @@ export default function ProductDetail() {
   const [success, setSuccess] = useState();
   const [sizeSelected, setSizeSelected] = useState(size && size[0]);
   const [colorSelected, setColorSelected] = useState(colors && colors[0]);
-  console.log(category[0]);
 
   const handleSelect = e => {
     // console.log(e.target.id);

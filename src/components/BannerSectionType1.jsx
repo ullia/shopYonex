@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import MiniBanner from "./MiniBanner";
 import { Link } from "react-router-dom";
 
 export default function BannerSectionType1() {
-  const [bigCategory, setBigCategory] = useState([
-    "tennis",
-    "badminton",
-    "golf",
-    "wears",
-    "bag_acc",
-  ]);
+  const bigCategory = ["tennis", "badminton", "golf", "wears", "bag_acc"];
   return (
     <section className="flex flex-col justify-center mt-32">
       <h3 className="text-center font-bold text-3xl">YONEX KOREA</h3>

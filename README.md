@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Shop Yonex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+테니스를 좋아해서 Yonex를 참고하여 만든 쇼핑몰 사이트.
 
-In the project directory, you can run:
+### Website
 
-### `yarn start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+https://shop-yonex.netlify.app/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 주요기능
 
-### `yarn test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 로그인/로그아웃
+- 상품등록(삭제는 firebase realtimeDB에서 가능)
+- 장바구니(추가, 삭제, 수량변경)
+- 테마(darkmode)변경
 
-### `yarn build`
+### 기술스택
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+React
+React router
+Firebase
+cloudinary
+Tailwind
+TanStack Query
+Context API
+Custom Hooks
+Netlify
+react slick 등...
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 프로젝트를 통해 배운점
 
-### `yarn eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. 예전에도 react router를 사용해봤었는데 createBrowserRouter 기능은 이번에 처음 사용했습니다. React Router v6에서 새롭게 도입된 API 중 하나로 라우터 구성을 객체 형태로 선언적으로 만들 수 있게 해줘서 명시적이고 가독성이 좋았습니다.
+2. firebase - 기본 기능중 인증과 데이터베이스를 사용해보면서 현업에서도 다른 데이터베이스 서비스를 이와 비슷하게 구현/이용 하고 있지 않을까 짐작되었습니다.
+3. Tailwind 도입 - 보통은 Sass를 사용해서 작업하는게 편한 편입니다. tailwind는 쉽고 빠르게 UI를 만들수 있어 유용했습니다. 다만 초반에 필요한 클래스명을 찾는데 오래걸렸고 복잡한 ui 일수록 멀티클래스도 많아져서 조금 지저분 할수도 있다는 느낌입니다.
+4. context 이용한 상태 관리 - 모든 컴포넌트들이 공통적으로 필요한 state이거나 어플리케이션 전반적으로 사용되는 데이터의 경우 context를 사용하면 편리했습니다. 여기서는 사용자 인증상태와 테마변경 부분을 context로 사용했습니다.
+5. tanstack query, custom Hook - tanstack 으로 데이터를 fetch 하고 캐싱, 에러핸들링을 하며 커스텀 훅으로 재사용가능한 로직을 만드는 법을 공부했습니다. 여기서는 cart와 product의 추가/삭제 로직을 custom hook을 이용해 구현했습니다.
+6. Netlify 배포 - 이전에 github에서 배포를 해보았고 이번에 netlify를 사용해봤습니다. github와 연동하여 코드변경시 자동배포 되는점이 좋았습니다.
+7. 전반적인 작업 진행과정을 이해하는데 도움이 되었습니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 진행하면서 발생한 문제와 해결
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. 최근 2년간의 파견 중 너무 많은 퍼블업무로 정작 리액트에 소홀하여 그전에 공부했던 부분을 많이 잊었었습니다. 다시 진행하면서 문법을 복기하는데도 시간이 조금 들었고 버전이 바뀌어 새로 생긴 기능도 많아서 다시 적응하는데 힘들었습니다.
+   그래서 온라인강의나 도서, 블로그등을 수도없이 드나들며 공부하며 작업했고 구현은 했지만 이해가 잘안되는 부분은 지금도 코드를 보면서 구조와 문법을 이해하려고 노력중입니다.
 
-## Learn More
+2. 배포하면서 발생한 에러 두가지
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- initialize 단계에서 netlify 가 사용하는 노드버전(18.0.6)이 react router(7.1.1) 버전과 맞지 않아 발생하는 문제 => .nvmrc 파일로 해결
+- building 단계에서 사용하지 않는 변수명으로 인한 컴파일 에러 => 변수명을 제거했으나 netlify.toml 에서 규칙변경으로도 가능한 것 같습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. 정상배포후에 로그인 불가 이슈
 
-### Code Splitting
+- 배포성공후에 로그인 모듈 팝업이 안되서 로그확인하니 Firebase: Error(auth/unauthorized-domain) 에러가 출력되었습니다.
+- firebase 측에 도메인을 등록해주지 않아 발생한 에러로 Authentication 에서 추가 도메인 승인 이후 정상화 되었습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 추후 추가하고 싶은 부분
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 검색기능
+- 무한스크롤 상품 목록
+- 페이지 전환효과
 
-### Making a Progressive Web App
+### 더 깊이 배워야할 부분
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. 기타 서비스 혹은 라이브러리들의 document에 적힌 수 많은 기능들을 필요에 따라 선별하고 프로젝트에 적용하는 방법이 쉽지 않음을 깨달았습니다. 문서와 친해져야 할 것 같습니다.
+2. 상태관리와 데이터 처리하는 부분을 구현하는것이 쉽지 않았습니다. 특히 tanstack은 생소했고, 예를들면useCart 커스텀 훅에서 사용자 인증정보를 가져오기 위해 Auth 컨텍스트에서 uid를 가져오고 이를 Tanstack useQuery 에서 해당 사용자의 장바구니 데이터를 불러오며 데이터를 변경할때는 firebase에 작성한 로직에 데이터를 넘겨 DB를 업데이트에 성공하면 화면을 갱신하는 일련 과정을 custom hook에서 엮어주는 작업들이 머릿속에서 효율적으로 바로바로 그려지지 않았습니다. 많은 반복과 분석으로 개선해야할 부분 같습니다.
